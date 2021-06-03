@@ -6,6 +6,7 @@
     - mariadb-server
     - mariadb
     - MySQL-python
+  when: ansible_facts['distribution'] == "CentOS"
 
 
 - name: Enable service Mysql, and not touch the state
@@ -13,3 +14,4 @@
     name: mariadb
     enabled: yes
     state: started
+  when: ansible_facts['distribution'] == "CentOS"
