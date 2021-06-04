@@ -50,7 +50,7 @@
 
 - name: Copy config file
   copy:
-    src: "alertmanager.yml.j2"
+    src: "alertmanager.yml"
     dest: /etc/alertmanager/alertmanager.yml
 
 - name: Copy systemd init file
