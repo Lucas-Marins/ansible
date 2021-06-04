@@ -1,6 +1,12 @@
 ---
-# Grafana Imports
+#
+# file: tasks/grafana-imports.yml
+#
+# Use Grafana HTTP API to create main datasource and save dashboards
+# @see http://docs.grafana.org/http_api/
+#
 
+# Service must be running before importing datasource and dashboards via API
 - name: start Grafana systemd service
   systemd:
     name: grafana-server
