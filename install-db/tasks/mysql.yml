@@ -1,9 +1,3 @@
-- name: "Install ansible python3 mysql dependency"
-  yum:
-    name: python3-mysqldb
-    state: latest
-  when: ansible_facts['distribution'] == "Cent
-
 - name: Instalando pacotes do MariaDB
   yum:
     name: "{{ packages }}"
