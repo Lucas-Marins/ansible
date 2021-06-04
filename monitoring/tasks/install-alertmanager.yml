@@ -50,7 +50,7 @@
 
 - name: Copy config file
   copy:
-    src: "{{ role_path }}/files/alertmanager.yml"
+    src: "alertmanager.yml"
     dest: /etc/alertmanager/alertmanager.yml
 
 - name: Copy systemd init file
