@@ -17,7 +17,6 @@ scrape_configs:
     static_configs:
       - targets: ["{{ groups["cluster"] | join(':9100", "')}}:9100"]
 
-
   - job_name: 'tower'
 	metrics_path: /api/v2/metrics
 	scrape_interval: 5s
