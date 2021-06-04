@@ -50,17 +50,11 @@
 
 - name: Copy config file
   copy:
-    src: "alertmanager.yml"
+    src: "alertmanager.yml.j2"
     dest: /etc/alertmanager/alertmanager.yml
 
 - name: Copy systemd init file
   template:
-    src: init.service.j2
+    src: alertmanager.service.j2
     dest: /etc/systemd/system/alertmanager.service
   notify: systemd_reload
-
-- name: Start alertmanager service
-  service:
-    name: alertmanager
-    state: started
-    enabled: yes
