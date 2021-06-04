@@ -15,7 +15,16 @@ scrape_configs:
   - job_name: "node_exporter"
     scrape_interval: 5s
     static_configs:
-      - targets: ["192.168.1.8:9100","192.168.1.11:9100"]
+      - targets: ["192.168.1.8:9100"]
+
+  - job_name: 'tower'
+    metrics_path: /api/v2/metrics
+    scrape_interval: 5s
+    scheme: http
+    bearer_token: U8cahTFXJASsaaVvK0mBBjHjR1pNyS
+    static_configs:
+    - targets:
+        - ["192.168.1.8"]
 
 rule_files:
   - "{{ prometheus_rule_path }}/*"
