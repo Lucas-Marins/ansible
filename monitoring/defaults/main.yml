@@ -83,3 +83,13 @@ grafana_datasource_basicauth_user:
 grafana_datasource_basicauth_password:
 grafana_datasource_default: "true"
 
+
+
+
+########## Alertmanager ################
+
+serviceName: "alertmanager"
+userId: "alertmanager"
+groupId: "alertmanager"
+exec_command: "/usr/local/bin/alertmanager --config.file=/etc/alertmanager/alertmanager.yml --storage.path=/data/alertmanager"
+version: "0.15.3"

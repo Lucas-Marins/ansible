@@ -35,8 +35,14 @@
     src: "rules.yml"
     dest: "{{ prometheus_rule_path }}/"
 
+- name: Alert config file
+  copy:
+    src: "alert-rules.yml"
+    dest: "etc/prometheus/alert.rules.yml"
+
 - name: copy Prometheus systemd config to server
   template:
     src: "prometheus.service.j2"
     dest: "/etc/systemd/system/prometheus.service"
     mode: "a+x"
+

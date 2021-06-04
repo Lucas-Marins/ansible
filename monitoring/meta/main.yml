@@ -18,6 +18,7 @@ galaxy_info:
     - grafana
     - prometheus
     - node_exporter
+    - alert-manager
 
 dependencies: []
   
