@@ -54,6 +54,7 @@ grafana_data_path: "/var/lib/grafana"
 grafana_log_path: "/var/log/grafana"
 grafana_plugins_path: "{{ grafana_data_path }}/plugins"
 grafana_dashboards_path: "{{ grafana_data_path }}/dashboards"
+grafana_port: 3000
 
 # Banco de dados
 grafana_database:
