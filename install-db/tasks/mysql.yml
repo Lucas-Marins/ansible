@@ -5,6 +5,7 @@
     packages:
     - mariadb-server
     - mariadb
+    - PyMySQL
   when: ansible_facts['distribution'] == "CentOS"
 
 - name: Enable service Mysql, and not touch the state
