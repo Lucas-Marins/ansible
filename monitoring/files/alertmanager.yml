@@ -9,10 +9,10 @@ route:
   routes:
   - match:
       alertname: InstanceDown
-  receiver: 'geral'
+  receiver: 'alert-team'
 
 receivers:
-- name: 'geral'
+- name: 'alert-team'
   slack_configs:
-  - channel: "#webhook-test"
+  - channel: "#geral"
     text: "summary: {{ .CommonAnnotations.summary }}\ndescription: {{ .CommonAnnotations.description }}"

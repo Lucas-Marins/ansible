@@ -64,9 +64,3 @@
     name: alertmanager
     state: started
     enabled: yes
-
-- name: Check if alertmanager is accessible
-  uri:
-    url: http://localhost:9093
-    method: GET
-    status_code: 200
