@@ -1,3 +1,8 @@
+- name: "Install ansible python3 mysql dependency"
+  apt:
+    name: python3-mysqldb
+    state: latest
+
 - name: Instalando pacotes do MariaDB
   yum:
     name: "{{ packages }}"
@@ -5,7 +10,7 @@
     packages:
     - mariadb-server
     - mariadb
-    - PyMySQL
+    - MySQL-python
   when: ansible_facts['distribution'] == "CentOS"
 
 - name: Enable service Mysql, and not touch the state
