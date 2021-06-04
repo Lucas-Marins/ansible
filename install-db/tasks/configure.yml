@@ -1,10 +1,8 @@
-  
 - name: Create a new database with name 'wp_prd'
   mysql_db:
     name: wp_db_prd
     state: present
   when: ansible_facts['distribution'] == "CentOS"
-
   
 
 - name: Create database user with password and all database privileges and 'WITH GRANT OPTION'

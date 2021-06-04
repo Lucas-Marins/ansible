@@ -3,3 +3,4 @@
   user: adminlx
   roles:
   - { role: install-wp, tags: ["install_wp"]}
+    

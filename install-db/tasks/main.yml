@@ -1,4 +1,3 @@
-  
 ---
 # tasks file for install-db
 - import_tasks: mysql.yml
