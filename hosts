@@ -1,8 +1,9 @@
-[ansibleserver]
+[master]
 192.168.1.8
 
-[dbserver]
+[workers]
 192.168.1.11
 
-[awx]
-192.168.1.8
+[cluster:children]
+master
+workers
