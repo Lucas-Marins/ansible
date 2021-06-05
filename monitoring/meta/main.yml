@@ -14,10 +14,10 @@ galaxy_info:
 
   galaxy_tags:
     - system
+    - alert-manager
     - monitoring
     - grafana
     - prometheus
-    - alert-manager
     - node_exporter
     
 
