@@ -28,10 +28,6 @@
   include_tasks: install-prometheus.yml
   when: "'prometheus' in components"
 
-- name: install AlertManager
-  include_tasks: install-alertmanager.yml
-  when: "'alert-manager' in componentes"
-
 - name: install node_exporter
   include_tasks: install-node-exporter.yml
   when: "'node_exporter' in components"
