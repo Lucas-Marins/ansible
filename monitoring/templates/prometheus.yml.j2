@@ -16,7 +16,7 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets:
-      {% for host in groups['cluster'] %}
+      {% for host in groups['cluster:children'] %}
       {% if inventory_hostname != host %}
         - '{{ host }}:9100'
       {% endif %}
