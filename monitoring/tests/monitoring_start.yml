@@ -24,12 +24,6 @@
 - hosts: master
   become: True
   tasks:
-  - name: start AlertManager
-    systemd: name=alert-manager state=started
-
-- hosts: master
-  become: True
-  tasks:
   - name: start Grafana server
     systemd: name=grafana-server state=started
 
