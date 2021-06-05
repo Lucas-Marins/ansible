@@ -31,4 +31,9 @@ rule_files:
 alerting:
   alertmanagers:
   - static_configs:
-    - targets:["192.168.1.8:9093"]
+    - targets:
+    {% for host in groups['master'] %}
+    {% if inventory_hostname != host %}
+      - '{{ host }}:9093'
+    {% endif %}
+    {% endfor %}
