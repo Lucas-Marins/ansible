@@ -12,7 +12,7 @@
       - prometheus
       - node_exporter
       - grafana
-      - alert-manager
+      - alertmanager
 
 - hosts: workers
   become: True
