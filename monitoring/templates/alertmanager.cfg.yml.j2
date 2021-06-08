@@ -10,9 +10,9 @@ route:
   repeat_interval: 12h
   receiver: slack-notifications
   routes:
-    - receiver: slack-notifications
-      match:
-        severity: warning
+  - receiver: slack-notifications
+    match:
+      severity: warning
 receivers:
   - name: slack-notifications
     slack_configs:
