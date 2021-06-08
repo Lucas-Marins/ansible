@@ -1,0 +1,22 @@
+---
+global:
+  resolve_timeout: 5m
+route:
+  group_by: [Alertname]
+  repeat_interval: 1h
+  receiver: email-me
+  
+receivers:
+  - name: slack-notifications
+    slack_configs:
+     - channel: "#geral"
+       send_resolved: true
+       api_url: 'https://hooks.slack.com/services/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'
+
+inhibit_rules:
+- source_match:
+    severity: critical
+  target_match:
+    severity: warning
+  equal:
+  - Alertname
