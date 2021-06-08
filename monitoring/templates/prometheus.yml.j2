@@ -31,5 +31,9 @@ rule_files:
 alerting:
   alertmanagers:
   - static_configs:
-    - targets: ["{{ groups["cluster:children"] | join(':9093", "')}}:9093"]
-    
+    - targets:
+    {% for host in groups['cluster:children'] %}
+    {% if inventory_hostname != host %}
+      - '{{ host }}:9093'
+    {% endif %}
+    {% endfor %}
