@@ -16,7 +16,7 @@ route:
 receivers:
   - name: slack-notifications
     slack_configs:
-     - channel: "#general"
+     - channel: "#geral"
        send_resolved: true
        api_url:'https://hooks.slack.com/services/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'
        title: "[Alert] {{ .GroupLabels.alertname }}"
