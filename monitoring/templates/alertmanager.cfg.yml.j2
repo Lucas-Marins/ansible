@@ -1,10 +1,10 @@
 ---
 global:
-  smtp_smarthost: {{ smtp_host }}:{{ smtp_port }}
-  smtp_from: {{ alertmanager_email_from }}@{{ ansible_hostname }}
+  #smtp_smarthost: {{ smtp_host }}:{{ smtp_port }}
+  #smtp_from: {{ alertmanager_email_from }}@{{ ansible_hostname }}
   # For gmail this is required to be true
   # and for any other ssl encrypted port
-  smtp_require_tls: false
+  #smtp_require_tls: false
   #pagerduty_url: ''
   #hipchat_api_url: ''
   #opsgenie_api_url: ''
