@@ -52,7 +52,7 @@
   template:
     force: "{{ overwrite | default('no') }}"
     backup: yes
-    src: templates/alertmanager.cfg.yml.j2
+    src: alertmanager.cfg.yml
     dest: /etc/alertmanager/config.yml
     mode: 0600
 
