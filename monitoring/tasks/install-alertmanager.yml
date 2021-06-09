@@ -49,10 +49,12 @@
     mode: 0755
 
 - name: copy alertmanager config
-  copy:
-    src: alertmanager.yml
-    dest: /etc/alertmanager/config.yml
-
+  template:
+    force: "{{ overwrite | default('no') }}"
+    backup: yes
+    src: templates/alertmanager.cfg.yml.j2
+    dest: /etc/alertmanager/alertmanager.yml
+    mode: 0600
 
 - name: Copy systemd init file
   template:

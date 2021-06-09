@@ -18,5 +18,7 @@ receivers:
   - channel: "#geral"
     send_resolved: true
     api_url: https://hooks.slack.com/services/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
+{% raw %}
     title: "[Alert] {{ .GroupLabels.alertname }}"
     text: "{{ range .Alerts }}{{ .Annotations.message }}\n{{ end }}"
+{% endraw %}

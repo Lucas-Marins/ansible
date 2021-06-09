@@ -4,7 +4,7 @@ groups:
   - alert: TargetDown
     annotations:
       message: '{{ $value }}% of the {{ $labels.job }} targets are down.'
-    expr: 100 * (count(up == 0) BY (job) / count(up) BY (job)) > 10
+    expr: 100 * (count(u =p= 0) BY (job) / count(up) BY (job)) > 10
     for: 1m
     labels:
       severity: warning
