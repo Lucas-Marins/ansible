@@ -49,10 +49,8 @@
     mode: 0755
 
 - name: copy alertmanager config
-  template:
-    force: "{{ overwrite | default('no') }}"
-    backup: yes
-    src: templates/alertmanager.cfg.yml.j2
+  copy:
+    src: "alertmanager.yml"
     dest: /etc/alertmanager/alertmanager.yml
     mode: 0600
 

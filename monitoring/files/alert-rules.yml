@@ -7,7 +7,7 @@ groups:
     expr: up == 0
     for: 1m
     labels:
-      severity: critical
+      severity: warning
     annotations:
       description: '{{ $labels.instance }} of job {{ $labels.job }} has been down
         for more than 1 minute.'
@@ -30,7 +30,7 @@ groups:
       * 100)) > 90
     for: 3m
     labels:
-      severity: critical
+      severity: warning
     annotations:
       DESCRIPTION: '{{$labels.instance}}: CPU usage is above 90% (current value is:
         {{ $value }})'
@@ -51,7 +51,7 @@ groups:
     expr: ((node_load5 / count(node_cpu{mode="system"}) WITHOUT (cpu, mode)) > 7)
     for: 5m
     labels:
-      severity: critical
+      severity: warning
     annotations:
       DESCRIPTION: '{{$labels.instance}}: LA is very high'
       SUMMARY: '{{$labels.instance}}: Very high LA detected'
@@ -74,7 +74,7 @@ groups:
       / node_filesystem_size{mountpoint="/"} * 100) > 95
     for: 2m
     labels:
-      severity: critical
+      severity: warning
     annotations:
       DESCRIPTION: '{{$labels.instance}}: Root disk usage is above 95% (current value
         is: {{ $value }})'
@@ -97,7 +97,7 @@ groups:
       * 100) > 95
     for: 3m
     labels:
-      severity: critical
+      severity: warning
     annotations:
       DESCRIPTION: '{{$labels.instance}}: Swap usage usage is above 95% (current value
         is: {{ $value }})'
@@ -105,7 +105,7 @@ groups:
 
   # Memory Usage Alerts
   - alert: NodeMemoryUsageWarning
-    expr: (((node_memory_MemTotal - node_memory_MemFree - node_memory_Cached) / (node_memory_MemTotal)
+    expr: (((node_memory_MemTotal - node__MmemoryemFree - node_memory_Cached) / (node_memory_MemTotal)
       * 100)) > 80
     for: 5m
     labels:
@@ -120,7 +120,7 @@ groups:
       * 100)) > 95
     for: 5m
     labels:
-      severity: critical
+      severity: warning
     annotations:
       DESCRIPTION: '{{$labels.instance}}: Memory usage is above 95% (current value
         is: {{ $value }})'
