@@ -30,5 +30,7 @@ rule_files:
 
 alerting:
   alertmanagers:
-  - static_configs:
-    - targets: ["{{ groups["cluster:children"] | join(':9093", "')}}:9093"]
+    - scheme: http
+      static_configs:
+      - targets:
+        - "127.0.0.1:9093"
