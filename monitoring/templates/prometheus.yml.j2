@@ -28,9 +28,3 @@ scrape_configs:
 rule_files:
   - "{{ prometheus_rule_path }}/*"
 
-alerting:
-  alertmanagers:
-    - scheme: http
-      static_configs:
-      - targets:
-        - targets: ["{{ groups["cluster:children"] | join(':9093", "')}}:9093"]

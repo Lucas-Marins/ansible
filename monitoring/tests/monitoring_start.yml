@@ -21,11 +21,11 @@
   - name: start Prometheus server
     systemd: name=prometheus state=started
 
-- hosts: master
-  become: True
-  tasks:
-  - name: start AlertManager server
-    systemd: name=alertmanager state=started
+# - hosts: master
+#   become: True
+#   tasks:
+#   - name: start AlertManager server
+#     systemd: name=alertmanager state=started
 
 - hosts: master
   become: True
