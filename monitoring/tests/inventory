@@ -1,8 +1,8 @@
 [master]
-Angel1     ansible_connection=local
+192.168.1.8
 
 [workers]
-Angel2     ansible_connection=192.168.1.11
+192.168.1.11
 
 [cluster:children]
 master

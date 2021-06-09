@@ -1,6 +1,7 @@
+  
 ---
 #
-# Instalação prometheus
+# file: tasks/install-prometheus.yml
 #
 
 - name: download and untar Prometheus tarball
@@ -12,7 +13,7 @@
     group: "{{ prometheus_group }}"
   tags:
     - tar
-    
+
 - name: create Prometheus server directories
   file:
     path: "{{ item }}"
@@ -35,14 +36,8 @@
     src: "rules.yml"
     dest: "{{ prometheus_rule_path }}/"
 
-# - name: Alert config file
-#   copy:
-#     src: "alert-rules.yml"
-#     dest: "{{ prometheus_rule_path }}/"
-
 - name: copy Prometheus systemd config to server
   template:
     src: "prometheus.service.j2"
     dest: "/etc/systemd/system/prometheus.service"
     mode: "a+x"
-

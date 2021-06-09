@@ -5,10 +5,10 @@
 
 prometheus_user: prometheus
 prometheus_group: prometheus
-prometheus_port: 9000
+prometheus_port: 9090
 
-prometheus_version: 2.27.1
-prometheus_node_exporter_version: 1.1.2
+prometheus_version: 2.1.0
+prometheus_node_exporter_version: 0.15.2
 
 prometheus_platform_suffix: linux-amd64
 
@@ -43,8 +43,8 @@ v{{ prometheus_node_exporter_version }}/node_exporter-{{ prometheus_node_exporte
 grafana_apt_key: https://packages.grafana.com/gpg.key
 grafana_apt_repo: deb https://packages.grafana.com/oss/deb stable main
 
-grafana_port: 3000
 grafana_host: "{{ ansible_nodename }}"
+grafana_port: 8787
                   
 grafana_user: grafana
 grafana_group: grafana
