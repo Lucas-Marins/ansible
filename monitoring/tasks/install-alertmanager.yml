@@ -52,7 +52,6 @@
   copy:
     src: "alertmanager.yml"
     dest: /etc/alertmanager/alertmanager.yml
-    mode: 0600
 
 - name: Copy systemd init file
   template:

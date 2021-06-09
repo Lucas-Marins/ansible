@@ -46,7 +46,7 @@
     - "{{ grafana_data_path}}"
     - "{{ grafana_log_path }}"
 
-# - name: import Grafana datasources and dashboards
-#   import_tasks: grafana-imports.yml
-#   tags:
-#     - grafana_imports
+- name: import Grafana datasources and dashboards
+  import_tasks: grafana-imports.yml
+  tags:
+    - grafana_imports

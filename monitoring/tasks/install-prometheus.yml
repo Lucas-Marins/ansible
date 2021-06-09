@@ -12,7 +12,7 @@
     group: "{{ prometheus_group }}"
   tags:
     - tar
-
+    
 - name: create Prometheus server directories
   file:
     path: "{{ item }}"
