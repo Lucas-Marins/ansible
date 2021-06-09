@@ -28,8 +28,3 @@ scrape_configs:
 rule_files:
   - "{{ prometheus_rule_path }}/*"
 
-alerting:
-  alertmanagers:
-  - static_configs:
-    - targets:
-      - alertmanager:9093
