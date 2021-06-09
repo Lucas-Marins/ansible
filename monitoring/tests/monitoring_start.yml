@@ -14,8 +14,8 @@
   tasks:
   - name: start node_exporter
     systemd: name=node_exporter state=started
-    
-- hosts: master
+
+- hosts: all
   become: True
   tasks:
   - name: start Prometheus server
@@ -26,7 +26,6 @@
   tasks:
   - name: start AlertManager server
     systemd: name=alertmanager state=started
-
 
 - hosts: master
   become: True
