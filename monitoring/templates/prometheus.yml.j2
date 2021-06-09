@@ -30,7 +30,10 @@ rule_files:
 
 alerting:
   alertmanagers:
-    - scheme: http
-      static_configs:
-      - targets:
-        - "127.0.0.1:9093"
+  - static_configs:
+    - targets:
+    {% for host in groups['cluster:children'] %}
+    {% if inventory_hostname != host %}
+      - '{{ host }}:9093'
+    {% endif %}
+    {% endfor %}
