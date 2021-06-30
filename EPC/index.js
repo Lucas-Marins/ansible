@@ -2,7 +2,7 @@
 
 const session = require('express-session');
 const express = require('express');
-const https = require('https');
+const http = require('http');
 const uuid = require('uuid');
 const fs = require('fs')
 
@@ -42,11 +42,7 @@ app.delete('/logout', function (request, response) {
 });
 
 
-const server = https.createServer({
-   key: fs.readFileSync('./cert/key.pem'),
-  cert: fs.readFileSync('./cert/cert.pem'),
-  },
-  app);
+const server = http.createServer(app);
 
 const wss = new WebSocket.Server({ clientTracking: false, noServer: true });
 
