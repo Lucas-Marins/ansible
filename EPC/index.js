@@ -1,50 +1,85 @@
-const http = require("http");
-const WebSocketServer = require("websocket").server
-let connection = null;
+'use strict';
 
-//create a raw http server (this will help us create the TCP which will then pass to the websocket to do the job)
-const httpserver = http.createServer((req, res) => 
-                console.log("we have received a request"))
+const session = require('express-session');
+const express = require('express');
+const http = require('http');
+const uuid = require('uuid');
+const fs = require('fs')
+const cors = require('cors')
 
- //pass the httpserver object to the WebSocketServer library to do all the job, this class will override the req/res 
-const websocket = new WebSocketServer({
-    "httpServer": httpserver
-})
+const WebSocket = require("ws");
 
+const app = express();
+const map = new Map();
+app.use(cors())
 
-httpserver.listen(8080, () => console.log("My server is listening on port 8080"))
-
-
-//when a legit websocket request comes listen to it and get the connection .. once you get a connection thats it! 
-websocket.on("request", request=> {
-
-    connection = request.accept(null, request.origin)
-    connection.on("open", () => console.log("Opened!!!"))
-    connection.on("close", () => console.log("CLOSED!!!"))
-    connection.on("message", message => {
-
-        console.log(`Received message ${message.utf8Data}`)
-        connection.send(`got your message: ${message.utf8Data}`)
-    })
+const sessionParser = session({
+  saveUninitialized: false,
+  secret: '$eCuRiTy',
+  resave: false
+});
 
 
-    //use connection.send to send stuff to the client 
-   // sendevery5seconds();
-    
+app.use(express.static('public'));
+app.use(sessionParser);
 
-})
+app.post('/login', function (req, res) {
  
-function sendevery5seconds(){
+  const id = uuid.v4();
 
-    connection.send(`Message ${Math.random()}`);
+  console.log(`Atualizando a sessão para o usuario ${id}`);
+  req.session.userId = id;
+  res.send({ result: 'OK', message: 'Sessçao Atualizada' });
+});
 
-    setTimeout(sendevery5seconds, 5000);
+app.delete('/logout', function (request, response) {
+  const ws = map.get(request.session.userId);
+
+  console.log('Destruindo sessão');
+  request.session.destroy(function () {
+    if (ws) ws.close();
+
+    response.send({ result: 'OK', message: 'sessão Destruida' });
+  });
+});
 
 
-}
+const server = http.createServer(app);
 
+const wss = new WebSocket.Server({ clientTracking: false, noServer: true });
 
-//client code 
-//let ws = new WebSocket("ws://localhost:8080");
-//ws.onmessage = message => console.log(`Received: ${message.data}`);
-//ws.send("Hello! I'm client")
+server.on('upgrade', function (request, socket, head) {
+  console.log('Analisando sessão da requisição...');
+
+  sessionParser(request, {}, () => {
+    if (!request.session.userId) {
+      socket.write('HTTP/1.1 401 Unauthorized\r\n\r\n');
+      socket.destroy();
+      return;
+    }
+
+    console.log('Sessão analisada!');
+
+    wss.handleUpgrade(request, socket, head, function (ws) {
+      wss.emit('connection', ws, request);
+    });
+  });
+});
+
+wss.on('connection', function (ws, request) {
+  const userId = request.session.userId;
+
+  map.set(userId, ws);
+
+  ws.on('message', function (message) {
+    console.log(`Mensagem recebida ${message} do usuário ${userId}`);
+  });
+
+  ws.on('close', function () {
+    map.delete(userId);
+  });
+});
+
+server.listen(8080, function () {
+  console.log('Listening on http://localhost:8080');
+});
