@@ -14,7 +14,7 @@ galaxy_info:
 
   galaxy_tags:
     - system
-    - alertmanager
+    - alertmanager!
     - monitoring
     - grafana
     - prometheus
