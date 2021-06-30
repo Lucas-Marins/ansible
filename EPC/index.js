@@ -43,8 +43,8 @@ app.delete('/logout', function (request, response) {
 
 
 const server = https.createServer({
-   key: fs.readFileSync('../../cert/key.pem'),
-  cert: fs.readFileSync('../../cert/cert.pem'),
+   key: fs.readFileSync('./cert/key.pem'),
+  cert: fs.readFileSync('./cert/cert.pem'),
   },
   app);
 
