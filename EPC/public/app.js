@@ -42,7 +42,7 @@
       ws.close();
     }
 
-    ws = new WebSocket(`ws://${location.host}`);
+    ws = new WebSocket(`wss://${location.host}`);
     ws.onerror = function () {
       showMessage('WebSocket erro');
     };

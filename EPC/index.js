@@ -2,7 +2,7 @@
 
 const session = require('express-session');
 const express = require('express');
-const http = require('http');
+const https = require('https');
 const uuid = require('uuid');
 const fs = require('fs')
 const cors = require('cors')
@@ -43,8 +43,9 @@ app.delete('/logout', function (request, response) {
   });
 });
 
+const server = https.createServer(app);
 
-const server = http.createServer(app);
+
 
 const wss = new WebSocket.Server({ clientTracking: false, noServer: true });
 
